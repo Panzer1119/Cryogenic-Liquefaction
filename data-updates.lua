@@ -27,7 +27,8 @@ local itemThrusterFuelBarrel = data.raw["item"]["thruster-fuel-barrel"]
 local itemThrusterOxidizerBarrel = data.raw["item"]["thruster-oxidizer-barrel"]
 
 --itemThrusterFuelBarrel.name = "cryogenic-liquefaction-cryogenic-liquefied-thruster-fuel-barrel"
---itemThrusterFuelBarrel.localised_name = { "item-name.cryogenic-liquefaction-cryogenic-liquefied-thruster-fuel-barrel" }
+itemThrusterFuelBarrel.localised_name = { "item-name.cryogenic-liquefaction-cryogenic-liquefied-thruster-fuel-barrel" }
+itemThrusterFuelBarrel.localised_description = { "item-description.cryogenic-liquefaction-cryogenic-liquefied-thruster-fuel-barrel" }
 --itemThrusterFuelBarrel.localised_name = { "item-name.filled-barrel", { "fluid-name.thruster-fuel" } }
 --itemThrusterFuelBarrel.order = "b[cryogenic-liquefaction-cryogenic-liquefied-thruster-fuel-barrel]"
 --itemThrusterFuelBarrel.order = "b[new-fluid]-a[space]-a[thruster-fuel]"
@@ -62,7 +63,8 @@ itemThrusterFuelBarrel.weight = 1000 * 1000 / cryogenicLiquefiedThrusterFuelBarr
 --}
 
 --itemThrusterOxidizerBarrel.name = "cryogenic-liquefaction-cryogenic-liquefied-thruster-oxidizer-barrel"
---itemThrusterOxidizerBarrel.localised_name = { "item-name.cryogenic-liquefaction-cryogenic-liquefied-thruster-oxidizer-barrel" }
+itemThrusterOxidizerBarrel.localised_name = { "item-name.cryogenic-liquefaction-cryogenic-liquefied-thruster-oxidizer-barrel" }
+itemThrusterOxidizerBarrel.localised_description = { "item-description.cryogenic-liquefaction-cryogenic-liquefied-thruster-oxidizer-barrel" }
 --itemThrusterOxidizerBarrel.localised_name = { "item-name.filled-barrel", { "fluid-name.thruster-oxidizer" } }
 --itemThrusterOxidizerBarrel.order = "b[cryogenic-liquefaction-cryogenic-liquefied-thruster-oxidizer-barrel]"
 --itemThrusterOxidizerBarrel.order = "b[new-fluid]-a[space]-a[thruster-oxidizer]"
