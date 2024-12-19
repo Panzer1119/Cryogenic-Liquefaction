@@ -12,6 +12,8 @@
 --See the License for the specific language governing permissions and
 --limitations under the License.
 
+-- Retrieve settings
+
 local liquefactionRequiresCryogenicPlant = settings.startup["cryogenic-liquefaction-liquefaction-requires-cryogenic-plant"].value
 
 local cryogenicLiquefiedThrusterFuelExpansionRatio = settings.startup["cryogenic-liquefaction-cryogenic-liquefied-thruster-fuel-expansion-ratio"].value
@@ -22,6 +24,8 @@ local cryogenicLiquefiedThrusterOxidizerBarrelStackSize = settings.startup["cryo
 
 local fillCryogenicLiquefiedThrusterFuelBarrelEnergyMultiplier = settings.startup["cryogenic-liquefaction-fill-cryogenic-liquefied-thruster-fuel-barrel-energy-multiplier"].value
 local fillCryogenicLiquefiedThrusterOxidizerBarrelEnergyMultiplier = settings.startup["cryogenic-liquefaction-fill-cryogenic-liquefied-thruster-oxidizer-barrel-energy-multiplier"].value
+
+-- Modify items
 
 local itemThrusterFuelBarrel = data.raw["item"]["thruster-fuel-barrel"]
 local itemThrusterOxidizerBarrel = data.raw["item"]["thruster-oxidizer-barrel"]
@@ -35,6 +39,10 @@ itemThrusterOxidizerBarrel.localised_name = { "item-name.cryogenic-liquefaction-
 itemThrusterOxidizerBarrel.localised_description = { "item-description.cryogenic-liquefaction-cryogenic-liquefied-thruster-oxidizer-barrel" }
 itemThrusterOxidizerBarrel.stack_size = cryogenicLiquefiedThrusterOxidizerBarrelStackSize
 itemThrusterOxidizerBarrel.weight = 1000 * 1000 / cryogenicLiquefiedThrusterOxidizerBarrelStackSize
+
+-- Modify recipes
+
+-- -- Modify the filling recipes for the cryogenic liquefied thruster fuel and oxidizer barrels
 
 -- TODO Rename it from filling to cooling?
 
@@ -62,6 +70,8 @@ else
     recipeThrusterFuelBarrel.category = "chemistry-or-cryogenics"
     recipeThrusterOxidizerBarrel.category = "chemistry-or-cryogenics"
 end
+
+-- -- Modify the emptying recipes for the cryogenic liquefied thruster fuel and oxidizer barrels
 
 local recipeEmptyThrusterFuelBarrel = data.raw["recipe"]["empty-thruster-fuel-barrel"]
 local recipeEmptyThrusterOxidizerBarrel = data.raw["recipe"]["empty-thruster-oxidizer-barrel"]
