@@ -12,6 +12,8 @@
 --See the License for the specific language governing permissions and
 --limitations under the License.
 
+local liquefactionRequiresCryogenicPlant = settings.startup["cryogenic-liquefaction-liquefaction-requires-cryogenic-plant"].value
+
 local cryogenicLiquefiedThrusterFuelExpansionRatio = settings.startup["cryogenic-liquefaction-cryogenic-liquefied-thruster-fuel-expansion-ratio"].value
 local cryogenicLiquefiedThrusterOxidizerExpansionRatio = settings.startup["cryogenic-liquefaction-cryogenic-liquefied-thruster-oxidizer-expansion-ratio"].value
 
@@ -102,7 +104,6 @@ local recipeThrusterOxidizerBarrel = data.raw["recipe"]["thruster-oxidizer-barre
 --recipeThrusterFuelBarrel.name = "cryogenic-liquefaction-fill-cryogenic-cryogenic-liquefied-thruster-fuel-barrel"
 --recipeThrusterFuelBarrel.localised_name = { "recipe-name.fill-barrel", { "fluid-name.thruster-fuel" } }
 --recipeThrusterFuelBarrel.order = "b[new-fluid]-a[space]-a[thruster-fuel]"
-recipeThrusterFuelBarrel.category = "cryogenics"
 recipeThrusterFuelBarrel.energy_required = recipeThrusterFuelBarrel.energy_required * fillCryogenicLiquefiedThrusterFuelBarrelEnergyMultiplier -- time to craft in seconds (at crafting speed 1)
 recipeThrusterFuelBarrel.ingredients = {
     { type = "item", name = "barrel", amount = 1, ignored_by_stats = 1 },
@@ -152,7 +153,6 @@ recipeThrusterFuelBarrel.ingredients = {
 --recipeThrusterOxidizerBarrel.name = "cryogenic-liquefaction-fill-cryogenic-cryogenic-liquefied-thruster-oxidizer-barrel"
 --recipeThrusterOxidizerBarrel.localised_name = { "recipe-name.fill-barrel", { "fluid-name.thruster-oxidizer" } }
 --recipeThrusterOxidizerBarrel.order = "b[new-fluid]-a[space]-a[thruster-oxidizer]"
-recipeThrusterOxidizerBarrel.category = "cryogenics"
 recipeThrusterOxidizerBarrel.energy_required = recipeThrusterOxidizerBarrel.energy_required * fillCryogenicLiquefiedThrusterOxidizerBarrelEnergyMultiplier -- time to craft in seconds (at crafting speed 1)
 recipeThrusterOxidizerBarrel.ingredients = {
     { type = "item", name = "barrel", amount = 1, ignored_by_stats = 1 },
@@ -198,6 +198,14 @@ recipeThrusterOxidizerBarrel.ingredients = {
 --        }
 --    }
 --}
+
+if liquefactionRequiresCryogenicPlant then
+    recipeThrusterFuelBarrel.category = "cryogenics"
+    recipeThrusterOxidizerBarrel.category = "cryogenics"
+else
+    recipeThrusterFuelBarrel.category = "chemistry-or-cryogenics"
+    recipeThrusterOxidizerBarrel.category = "chemistry-or-cryogenics"
+end
 
 local recipeEmptyThrusterFuelBarrel = data.raw["recipe"]["empty-thruster-fuel-barrel"]
 local recipeEmptyThrusterOxidizerBarrel = data.raw["recipe"]["empty-thruster-oxidizer-barrel"]

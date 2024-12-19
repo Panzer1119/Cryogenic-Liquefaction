@@ -14,10 +14,17 @@
 
 data:extend({
     {
+        type = "bool-setting",
+        name = "cryogenic-liquefaction-liquefaction-requires-cryogenic-plant",
+        setting_type = "startup",
+        order = "aa",
+        default_value = true,
+    },
+    {
         type = "double-setting",
         name = "cryogenic-liquefaction-cryogenic-liquefied-thruster-fuel-expansion-ratio",
         setting_type = "startup",
-        order = "aa",
+        order = "ba",
         default_value = 800,
         minimum_value = 0.01,
         maximum_value = 1000000
@@ -26,7 +33,7 @@ data:extend({
         type = "double-setting",
         name = "cryogenic-liquefaction-cryogenic-liquefied-thruster-oxidizer-expansion-ratio",
         setting_type = "startup",
-        order = "ab",
+        order = "bb",
         default_value = 800,
         minimum_value = 0.01,
         maximum_value = 1000000
@@ -35,7 +42,7 @@ data:extend({
         type = "int-setting",
         name = "cryogenic-liquefaction-cryogenic-liquefied-thruster-fuel-barrel-stack-size",
         setting_type = "startup",
-        order = "ba",
+        order = "ca",
         default_value = 1,
         minimum_value = 1,
         maximum_value = 1000
@@ -44,7 +51,7 @@ data:extend({
         type = "int-setting",
         name = "cryogenic-liquefaction-cryogenic-liquefied-thruster-oxidizer-barrel-stack-size",
         setting_type = "startup",
-        order = "bb",
+        order = "cb",
         default_value = 1,
         minimum_value = 1,
         maximum_value = 1000
@@ -53,7 +60,7 @@ data:extend({
         type = "double-setting",
         name = "cryogenic-liquefaction-fill-cryogenic-liquefied-thruster-fuel-barrel-energy-multiplier",
         setting_type = "startup",
-        order = "ca",
+        order = "da",
         default_value = 1000,
         minimum_value = 0.01,
         maximum_value = 1000000
@@ -62,7 +69,7 @@ data:extend({
         type = "double-setting",
         name = "cryogenic-liquefaction-fill-cryogenic-liquefied-thruster-oxidizer-barrel-energy-multiplier",
         setting_type = "startup",
-        order = "cb",
+        order = "db",
         default_value = 1000,
         minimum_value = 0.01,
         maximum_value = 1000000
