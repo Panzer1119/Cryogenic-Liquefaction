@@ -1,4 +1,16 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2024-12-19
+  Major Features:
+    - Added recipes to barrel Thruster fuel and oxidizer by liquefying them in a cryogenic plant.
+  Features:
+    - New setting: Added a toggle to enable or disable the requirement for the cryogenic plant in relevant processes.
+  Minor Features:
+    - Updated localization for thruster fuel and oxidizer barrels, including item names and recipe descriptions, improving clarity.
+  Changes:
+    - Auto-barrel functionality added: Thruster fuel and oxidizer fluids now support auto-barreling, streamlining fluid management.
+    - Cleaned up data-updates.lua by removing deprecated code and adding inline comments for better maintainability.
+---------------------------------------------------------------------------------------------------
 Version: 0.1.0
 Date: 2024-12-18
   Major Features:
