@@ -55,6 +55,17 @@ local function multiplyItem(items, itemType, itemName, multiplier)
     end
 end
 
+-- Removes the item from the table if the item's key matches the value
+local function removeEntryByKeyValue(object, key, value)
+    for i = #object, 1, -1 do
+        if object[i][key] == value then
+            table.remove(object, i)
+            return
+        end
+    end
+    error("Could not find entry with key '" .. key .. "' and value '" .. value .. "' in table " .. serpent.block(object))
+end
+
 -- Modify items
 
 local itemThrusterFuelBarrel = data.raw["item"]["thruster-fuel-barrel"]
