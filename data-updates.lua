@@ -124,3 +124,26 @@ recipeEmptyThrusterOxidizerBarrel.localised_description = { "recipe-description.
 recipeEmptyThrusterOxidizerBarrel.category = "chemistry-or-cryogenics"
 recipeEmptyThrusterOxidizerBarrel.energy_required = recipeEmptyThrusterOxidizerBarrel.energy_required * emptyCryogenicLiquefiedThrusterOxidizerBarrelEnergyMultiplier -- time to craft in seconds (at crafting speed 1)
 multiplyItem(recipeEmptyThrusterOxidizerBarrel.results, "fluid", "thruster-oxidizer", cryogenicLiquefiedThrusterOxidizerExpansionRatio)
+
+-- Modify technologies
+
+-- Move the fill recipe unlocks to the Cryogenic plant technology if liquefactionRequiresCryogenicPlant is true
+if liquefactionRequiresCryogenicPlant then
+    -- Get the technologies
+    local technologyFluidHandling = data.raw["technology"]["fluid-handling"]
+    local technologyCryogenicPlant = data.raw["technology"]["cryogenic-plant"]
+    -- Check if the technologies exist
+    if not technologyFluidHandling then
+        error("Technology 'fluid-handling' does not exist.")
+    end
+    if not technologyCryogenicPlant then
+        error("Technology 'cryogenic-plant' does not exist.")
+    end
+    affectedRecipes = { "thruster-fuel-barrel", "thruster-oxidizer-barrel", }
+    for _, recipeName in pairs(affectedRecipes) do
+        -- Remove the fill recipes from the Fluid handling technology
+        removeEntryByKeyValue(technologyFluidHandling.effects, "recipe", recipeName)
+        -- Move the fill recipes to the Cryogenic plant technology
+        table.insert(technologyCryogenicPlant.effects, { type = "unlock-recipe", recipe = recipeName })
+    end
+end
