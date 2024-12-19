@@ -49,14 +49,16 @@ itemThrusterOxidizerBarrel.weight = 1000 * 1000 / cryogenicLiquefiedThrusterOxid
 local recipeThrusterFuelBarrel = data.raw["recipe"]["thruster-fuel-barrel"]
 local recipeThrusterOxidizerBarrel = data.raw["recipe"]["thruster-oxidizer-barrel"]
 
---recipeThrusterFuelBarrel.localised_name = { "recipe-name.fill-barrel", { "fluid-name.thruster-fuel" } }
+recipeThrusterFuelBarrel.localised_name = { "recipe-name.cryogenic-liquefaction-fill-cryogenic-liquefied-thruster-fuel-barrel" }
+recipeThrusterFuelBarrel.localised_description = { "recipe-description.cryogenic-liquefaction-fill-cryogenic-liquefied-thruster-fuel-barrel" }
 recipeThrusterFuelBarrel.energy_required = recipeThrusterFuelBarrel.energy_required * fillCryogenicLiquefiedThrusterFuelBarrelEnergyMultiplier -- time to craft in seconds (at crafting speed 1)
 recipeThrusterFuelBarrel.ingredients = {
     { type = "item", name = "barrel", amount = 1, ignored_by_stats = 1 },
     { type = "fluid", name = "thruster-fuel", amount = 50 * cryogenicLiquefiedThrusterFuelExpansionRatio, ignored_by_stats = 50 * cryogenicLiquefiedThrusterFuelExpansionRatio }
 }
 
---recipeThrusterOxidizerBarrel.localised_name = { "recipe-name.fill-barrel", { "fluid-name.thruster-oxidizer" } }
+recipeThrusterOxidizerBarrel.localised_name = { "recipe-name.cryogenic-liquefaction-fill-cryogenic-liquefied-thruster-oxidizer-barrel" }
+recipeThrusterOxidizerBarrel.localised_description = { "recipe-description.cryogenic-liquefaction-fill-cryogenic-liquefied-thruster-oxidizer-barrel" }
 recipeThrusterOxidizerBarrel.energy_required = recipeThrusterOxidizerBarrel.energy_required * fillCryogenicLiquefiedThrusterOxidizerBarrelEnergyMultiplier -- time to craft in seconds (at crafting speed 1)
 recipeThrusterOxidizerBarrel.ingredients = {
     { type = "item", name = "barrel", amount = 1, ignored_by_stats = 1 },
@@ -76,7 +78,8 @@ end
 local recipeEmptyThrusterFuelBarrel = data.raw["recipe"]["empty-thruster-fuel-barrel"]
 local recipeEmptyThrusterOxidizerBarrel = data.raw["recipe"]["empty-thruster-oxidizer-barrel"]
 
---recipeEmptyThrusterFuelBarrel.localised_name = { "recipe-name.empty-filled-barrel", { "fluid-name.thruster-fuel" } }
+recipeEmptyThrusterFuelBarrel.localised_name = { "recipe-name.cryogenic-liquefaction-empty-cryogenic-liquefied-thruster-fuel-barrel" }
+recipeEmptyThrusterFuelBarrel.localised_description = { "recipe-description.cryogenic-liquefaction-empty-cryogenic-liquefied-thruster-fuel-barrel" }
 recipeEmptyThrusterFuelBarrel.category = "chemistry-or-cryogenics"
 recipeEmptyThrusterFuelBarrel.energy_required = recipeEmptyThrusterFuelBarrel.energy_required * fillCryogenicLiquefiedThrusterFuelBarrelEnergyMultiplier / 10 -- time to craft in seconds (at crafting speed 1)
 recipeEmptyThrusterFuelBarrel.results = {
@@ -84,7 +87,8 @@ recipeEmptyThrusterFuelBarrel.results = {
     { type = "fluid", name = "thruster-fuel", amount = 50 * cryogenicLiquefiedThrusterFuelExpansionRatio }
 }
 
---recipeEmptyThrusterOxidizerBarrel.localised_name = { "recipe-name.empty-filled-barrel", { "fluid-name.thruster-oxidizer" } }
+recipeEmptyThrusterOxidizerBarrel.localised_name = { "recipe-name.cryogenic-liquefaction-empty-cryogenic-liquefied-thruster-fuel-barrel" }
+recipeEmptyThrusterOxidizerBarrel.localised_description = { "recipe-description.cryogenic-liquefaction-empty-cryogenic-liquefied-thruster-fuel-barrel" }
 recipeEmptyThrusterOxidizerBarrel.category = "chemistry-or-cryogenics"
 recipeEmptyThrusterOxidizerBarrel.energy_required = recipeEmptyThrusterOxidizerBarrel.energy_required * fillCryogenicLiquefiedThrusterOxidizerBarrelEnergyMultiplier / 10 -- time to craft in seconds (at crafting speed 1)
 recipeEmptyThrusterOxidizerBarrel.results = {
