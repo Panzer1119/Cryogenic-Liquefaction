@@ -51,7 +51,7 @@ local function multiplyItem(items, itemType, itemName, multiplier)
         if item.ignored_by_stats then
             item.ignored_by_stats = item.ignored_by_stats * multiplier
         end
-        ::continue::
+        :: continue ::
     end
 end
 
