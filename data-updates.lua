@@ -30,11 +30,30 @@ local fillCryogenicLiquefiedThrusterOxidizerBarrelEnergyMultiplier = settings.st
 local cryogenicLiquefiedThrusterFuelBarrelWeight = 1000 * 1000 / cryogenicLiquefiedThrusterFuelBarrelStackSize
 local cryogenicLiquefiedThrusterOxidizerBarrelWeight = 1000 * 1000 / cryogenicLiquefiedThrusterOxidizerBarrelStackSize
 
-local cryogenicLiquefiedThrusterFuelBarrelVolume = 50 * cryogenicLiquefiedThrusterFuelExpansionRatio
-local cryogenicLiquefiedThrusterOxidizerBarrelVolume = 50 * cryogenicLiquefiedThrusterOxidizerExpansionRatio
-
 local emptyCryogenicLiquefiedThrusterFuelBarrelEnergyMultiplier = fillCryogenicLiquefiedThrusterFuelBarrelEnergyMultiplier / 10
 local emptyCryogenicLiquefiedThrusterOxidizerBarrelEnergyMultiplier = fillCryogenicLiquefiedThrusterOxidizerBarrelEnergyMultiplier / 10
+
+-- Define some functions
+
+-- Multiplies the amount (and if set ignored_by_stats) by the multiplier of the item identified by the itemType and itemName
+local function multiplyItem(items, itemType, itemName, multiplier)
+    for _, item in pairs(items) do
+        -- If the item does not have a name field, treat the item as an array and compare the first value to the itemName and skip it if it does not match
+        if not item.name and item[1] ~= itemName then
+            goto continue
+        end
+        -- If the item does have a name field, compare the item's type and name to the itemType and itemName and skip it if they do not match
+        if item.type ~= itemType or item.name ~= itemName then
+            goto continue
+        end
+        -- Multiply the amount (and if set ignored_by_stats) by the multiplier
+        item.amount = item.amount * multiplier
+        if item.ignored_by_stats then
+            item.ignored_by_stats = item.ignored_by_stats * multiplier
+        end
+        ::continue::
+    end
+end
 
 -- Modify items
 
@@ -63,18 +82,12 @@ local recipeThrusterOxidizerBarrel = data.raw["recipe"]["thruster-oxidizer-barre
 recipeThrusterFuelBarrel.localised_name = { "recipe-name.cryogenic-liquefaction-fill-cryogenic-liquefied-thruster-fuel-barrel" }
 recipeThrusterFuelBarrel.localised_description = { "recipe-description.cryogenic-liquefaction-fill-cryogenic-liquefied-thruster-fuel-barrel" }
 recipeThrusterFuelBarrel.energy_required = recipeThrusterFuelBarrel.energy_required * fillCryogenicLiquefiedThrusterFuelBarrelEnergyMultiplier -- time to craft in seconds (at crafting speed 1)
-recipeThrusterFuelBarrel.ingredients = {
-    { type = "item", name = "barrel", amount = 1, ignored_by_stats = 1 },
-    { type = "fluid", name = "thruster-fuel", amount = cryogenicLiquefiedThrusterFuelBarrelVolume, ignored_by_stats = cryogenicLiquefiedThrusterFuelBarrelVolume }
-}
+multiplyItem(recipeThrusterFuelBarrel.ingredients, "fluid", "thruster-fuel", cryogenicLiquefiedThrusterFuelExpansionRatio)
 
 recipeThrusterOxidizerBarrel.localised_name = { "recipe-name.cryogenic-liquefaction-fill-cryogenic-liquefied-thruster-oxidizer-barrel" }
 recipeThrusterOxidizerBarrel.localised_description = { "recipe-description.cryogenic-liquefaction-fill-cryogenic-liquefied-thruster-oxidizer-barrel" }
 recipeThrusterOxidizerBarrel.energy_required = recipeThrusterOxidizerBarrel.energy_required * fillCryogenicLiquefiedThrusterOxidizerBarrelEnergyMultiplier -- time to craft in seconds (at crafting speed 1)
-recipeThrusterOxidizerBarrel.ingredients = {
-    { type = "item", name = "barrel", amount = 1, ignored_by_stats = 1 },
-    { type = "fluid", name = "thruster-oxidizer", amount = cryogenicLiquefiedThrusterOxidizerBarrelVolume, ignored_by_stats = cryogenicLiquefiedThrusterOxidizerBarrelVolume }
-}
+multiplyItem(recipeThrusterOxidizerBarrel.ingredients, "fluid", "thruster-oxidizer", cryogenicLiquefiedThrusterOxidizerExpansionRatio)
 
 if liquefactionRequiresCryogenicPlant then
     recipeThrusterFuelBarrel.category = "cryogenics"
@@ -93,16 +106,10 @@ recipeEmptyThrusterFuelBarrel.localised_name = { "recipe-name.cryogenic-liquefac
 recipeEmptyThrusterFuelBarrel.localised_description = { "recipe-description.cryogenic-liquefaction-empty-cryogenic-liquefied-thruster-fuel-barrel" }
 recipeEmptyThrusterFuelBarrel.category = "chemistry-or-cryogenics"
 recipeEmptyThrusterFuelBarrel.energy_required = recipeEmptyThrusterFuelBarrel.energy_required * emptyCryogenicLiquefiedThrusterFuelBarrelEnergyMultiplier -- time to craft in seconds (at crafting speed 1)
-recipeEmptyThrusterFuelBarrel.results = {
-    { type = "item", name = "barrel", amount = 1 },
-    { type = "fluid", name = "thruster-fuel", amount = cryogenicLiquefiedThrusterFuelBarrelVolume }
-}
+multiplyItem(recipeEmptyThrusterFuelBarrel.results, "fluid", "thruster-fuel", cryogenicLiquefiedThrusterFuelExpansionRatio)
 
 recipeEmptyThrusterOxidizerBarrel.localised_name = { "recipe-name.cryogenic-liquefaction-empty-cryogenic-liquefied-thruster-fuel-barrel" }
 recipeEmptyThrusterOxidizerBarrel.localised_description = { "recipe-description.cryogenic-liquefaction-empty-cryogenic-liquefied-thruster-fuel-barrel" }
 recipeEmptyThrusterOxidizerBarrel.category = "chemistry-or-cryogenics"
 recipeEmptyThrusterOxidizerBarrel.energy_required = recipeEmptyThrusterOxidizerBarrel.energy_required * emptyCryogenicLiquefiedThrusterOxidizerBarrelEnergyMultiplier -- time to craft in seconds (at crafting speed 1)
-recipeEmptyThrusterOxidizerBarrel.results = {
-    { type = "item", name = "barrel", amount = 1 },
-    { type = "fluid", name = "thruster-oxidizer", amount = cryogenicLiquefiedThrusterOxidizerBarrelVolume }
-}
+multiplyItem(recipeEmptyThrusterOxidizerBarrel.results, "fluid", "thruster-oxidizer", cryogenicLiquefiedThrusterOxidizerExpansionRatio)
